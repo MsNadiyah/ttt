@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Tic Tac Toe</title>
+
+		<link href="css/reset.css" rel="stylesheet">
+		<link href="css/normalize.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+
+		<script src="js/angular.js" type="text/javascript"></script>
+		<script src="js/app.js" type="text/javascript"></script>
+		<script src="js/GameBoard.js" type="text/javascript"></script>
+		<script src="js/GamePlay.js" type="text/javascript"></script>
+		<script src="js/GameManager.js" type="text/javascript"></script>
+		<script src="js/SuperGameManager.js" type="text/javascript"></script>
+		<script src="js/TTTController.js" type="text/javascript"></script>
+
+	</head>
+
+	<body ng-app="tttApp">
+		
+		<div id="wrapper" ng-controller="TTTController as ttt">
+			
+			<header>
+				<h1><img id="header-image" src="images/dexters-laboratory-heading.png"></h1>
+			</header>
+
+			<main>
+				<div class="game-board">
+					<h1 id="click-to-play">...click anywhere to play...</h1>
+					<div class="board-space"
+						ng-repeat="space in ttt.tttBoard.spaces track by $index"
+						ng-click="ttt.tttBoard.submitTurn($index)"
+						ng-class="ttt.tttBoard.getSpaceState($index)"> 
+						{{ $index }}
+					</div>
+
+				<!-- Sidebars containing player 1 and 2 information -->
+				<div id="sidebar">
+
+					<div id="player1-sidebar"></div>
+					<div id="player2-sidebar"></div>
+
+				</div>
+
+			</main>
+
+			<footer>
+				<h2 class="footer-text">Made in DTLA</h2>
+				<h2 class="footer-text"> Nadiyah Ford </h2>
+			</footer>
+
+		</div>
+
+	</body>
+</html>

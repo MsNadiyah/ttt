@@ -1,0 +1,62 @@
+#wrapper {
+	background-image: url("../images/dex_lab_background2.png");
+	background-repeat: no-repeat;
+	margin-top: -30px;
+}
+
+h1 {
+	text-align: center;
+}
+
+#click-to-play {
+	color: #FFF;
+	font-size: 30px;
+}
+
+#header-image {
+	height: 200px;
+}
+
+.greeting {
+	text-align: center;
+}
+
+.game-board {
+	width: 28%;
+	margin: 0 auto; 
+	margin-bottom: 30px;
+}
+
+.board-space {	
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border: 5px solid #97BF5C;
+	box-shadow: inset 0 0 30px #000;
+	text-align: center;
+	border-radius: 20px;
+	margin: 2px;
+	color: #FFF;
+	font-size: 30px;
+}
+
+.board-space.unselected {
+	background-color: ;
+}
+
+.board-space.player1 {
+	background-color: #603D7A;	
+}
+
+.board-space.player2 {
+	background-color: #27926F;
+}
+
+footer {
+	background-color: #000;
+	padding: 5px 0;
+}
+
+.footer-text {
+	color: #FFFFFF;
+}
