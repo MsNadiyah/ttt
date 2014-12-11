@@ -2,9 +2,9 @@ angular
 	.module("tttApp")
 	.controller("TTTController", TTTControllerFunc);
 
-TTTControllerFunc.$inject = ['SuperGameManager'];
+TTTControllerFunc.$inject = ['GameBoard'];
 
-function TTTControllerFunc(SuperGameManager) {
+function TTTControllerFunc(GameBoard) {
 	this.gameName = "Tic Tac Toe";
 
 	this.tttBoard = new GameBoard( 9 );
