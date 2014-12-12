@@ -36,12 +36,14 @@ h1 {
 	text-align: center;
 	border-radius: 20px;
 	margin: 2px;
-	color: #FFF;
-	font-size: 30px;
+	color: white;
+	font: 30px bold;
+	/*font-size: 30px;*/
+
 }
 
 .board-space.unselected {
-	background-color: ;
+	background-color: #000000;
 }
 
 .board-space.player1 {
@@ -59,4 +61,8 @@ footer {
 
 .footer-text {
 	color: #FFFFFF;
+}
+
+h2 {
+	text-align: center;
 }
