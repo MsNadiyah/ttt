@@ -2,7 +2,7 @@ angular
 	.module("tttApp")
 	.controller("TTTController", TTTControllerFunc);
 
-TTTControllerFunc.$inject = ['GameBoard'];
+TTTControllerFunc.$inject = ["GameBoard"];
 
 function TTTControllerFunc(GameBoard) {
 	this.gameName = "Tic Tac Toe";

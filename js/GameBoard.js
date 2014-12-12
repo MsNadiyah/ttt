@@ -25,20 +25,20 @@ function GameBoardFunc() {
 
 		// The toggleSpace function will need to change in order to reflect player selections
 		function submitTurn(i) {
-			console.log(i);
-			console.log("Inside submit turn");
 			console.log("Player turn is set to " + this.playerTurn);
+			console.log(this.turnCounter);
 
 			if (this.win === false) {
 				if (this.spaces[i] === 0) {
 					if (this.playerTurn === true) {
 						this.spaces[i] = 1;
+						this.turnCounter++;
 						this.spaces[i].innerHTML = "#A1DAEB"; // display an image in the box
 					} else {
 						this.spaces[i] = 7;
+						this.turnCounter++;
 						this.spaces[i].innerHTML = "#A4CF64"; // display an image in the box
 					}
-					console.log(this.spaces);
 					this.playerTurn = !this.playerTurn;
 					// turnCounter++; // Fix the turnCounter
 					this.winCheck();
@@ -69,6 +69,7 @@ function GameBoardFunc() {
 			else if (this.spaces[0] + this.spaces[4] + this.spaces[8] === 21 ) { winner = 2;}
 			else if (this.spaces[2] + this.spaces[4] + this.spaces[6] === 21 ) { winner = 2;}
 
+			// Player 1 has won
 			if (winner === 1) {
 				this.player1++;
 				console.log("count of player 1 wins: " + this.player1);
@@ -76,12 +77,17 @@ function GameBoardFunc() {
 				// Do you want to play again??
 				playAgain = confirm("Player 1 wins!!! \n\nWant to play again?");
 					if (playAgain === true) { this.boardReset(); } else {}
+			// Player 2 has won
 			} else if (winner === 2) {
 				this.player2++;
 				this.win = true;
 				// Do you want to play again??
 				playAgain = confirm("Player 2 wins!!! \n\nWant to play again?");
 					if (playAgain === true) { this.boardReset(); } else {}
+			// Cats game reset function
+			} else if (this.turnCounter >=9 ) {
+				alert("Cats Game!  Equally matched you are... Play again!"); 
+				{ this.boardReset(); } 
 			} else {
 				this.win = false;
 			}
