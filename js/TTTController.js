@@ -5,8 +5,10 @@ angular
 TTTControllerFunc.$inject = ["GameBoard"];
 
 function TTTControllerFunc(GameBoard) {
-	this.gameName = "Tic Tac Toe";
+	var self = this;
 
-	this.tttBoard = new GameBoard( 9 );
+	self.gameName = "Tic Tac Toe";
+
+	self.tttBoard = new GameBoard( 9 );
 }
 

@@ -10,39 +10,41 @@ function GameBoardFunc($firebase) {
 	var tttFirebase = $firebase(tttFirebase).$asObject();
 
 	var GameBoard = function( numSpaces ) {
-		this.numSpaces = numSpaces;
-			//this.spaces = new Array( numSpaces );
-		this.spaces = [0,0,0,0,0,0,0,0,0];
+		var self = this;
 
-		this.turnCounter = 0; 
-		this.win = false;
-		this.playerTurn = true;
-		this.player1 = 0;
-		this.player2 = 0;
+		self.numSpaces = numSpaces;
+			//self.spaces = new Array( numSpaces );
+		self.spaces = [0,0,0,0,0,0,0,0,0];
 
-		this.submitTurn = submitTurn;
-		this.winCheck = winCheck;
-		this.boardReset = boardReset;
+		self.turnCounter = 0; 
+		self.win = false;
+		self.playerTurn = true;
+		self.player1 = 0;
+		self.player2 = 0;
+
+		self.submitTurn = submitTurn;
+		self.winCheck = winCheck;
+		self.boardReset = boardReset;
 
 		// The toggleSpace function will need to change in order to reflect player selections
 		function submitTurn(i) {
-			console.log("Player turn is set to " + this.playerTurn);
-			console.log(this.turnCounter);
+			console.log("Player turn is set to " + self.playerTurn);
+			console.log(self.turnCounter);
 
-			if (this.win === false) {
-				if (this.spaces[i] === 0) {
-					if (this.playerTurn === true) {
-						this.spaces[i] = 1;
-						this.turnCounter++;
-						this.spaces[i].innerHTML = "#A1DAEB"; // display an image in the box
+			if (self.win === false) {
+				if (self.spaces[i] === 0) {
+					if (self.playerTurn === true) {
+						self.spaces[i] = 1;
+						self.turnCounter++;
+						self.spaces[i].innerHTML = "#A1DAEB"; // display an image in the box
 					} else {
-						this.spaces[i] = 7;
-						this.turnCounter++;
-						this.spaces[i].innerHTML = "#A4CF64"; // display an image in the box
+						self.spaces[i] = 7;
+						self.turnCounter++;
+						self.spaces[i].innerHTML = "#A4CF64"; // display an image in the box
 					}
-					this.playerTurn = !this.playerTurn;
+					self.playerTurn = !self.playerTurn;
 					// turnCounter++; // Fix the turnCounter
-					this.winCheck();
+					self.winCheck();
 				}
 			}
 		} // Closes the submitTurn Block
@@ -51,67 +53,67 @@ function GameBoardFunc($firebase) {
 			var winner, playAgain;
 
 			// Check player 1 for wins
-			if      (this.spaces[0] + this.spaces[1] + this.spaces[2] === 3 ) { winner = 1;}
-			else if (this.spaces[3] + this.spaces[4] + this.spaces[5] === 3 ) { winner = 1;}
-			else if (this.spaces[6] + this.spaces[7] + this.spaces[8] === 3 ) { winner = 1;}
-			else if (this.spaces[0] + this.spaces[3] + this.spaces[6] === 3 ) { winner = 1;}
-			else if (this.spaces[1] + this.spaces[4] + this.spaces[7] === 3 ) { winner = 1;}
-			else if (this.spaces[2] + this.spaces[5] + this.spaces[8] === 3 ) { winner = 1;}
-			else if (this.spaces[0] + this.spaces[4] + this.spaces[8] === 3 ) { winner = 1;}
-			else if (this.spaces[2] + this.spaces[4] + this.spaces[6] === 3 ) { winner = 1;}
+			if      (self.spaces[0] + self.spaces[1] + self.spaces[2] === 3 ) { winner = 1;}
+			else if (self.spaces[3] + self.spaces[4] + self.spaces[5] === 3 ) { winner = 1;}
+			else if (self.spaces[6] + self.spaces[7] + self.spaces[8] === 3 ) { winner = 1;}
+			else if (self.spaces[0] + self.spaces[3] + self.spaces[6] === 3 ) { winner = 1;}
+			else if (self.spaces[1] + self.spaces[4] + self.spaces[7] === 3 ) { winner = 1;}
+			else if (self.spaces[2] + self.spaces[5] + self.spaces[8] === 3 ) { winner = 1;}
+			else if (self.spaces[0] + self.spaces[4] + self.spaces[8] === 3 ) { winner = 1;}
+			else if (self.spaces[2] + self.spaces[4] + self.spaces[6] === 3 ) { winner = 1;}
 
 			// Check player 2 for wins
-			if      (this.spaces[0] + this.spaces[1] + this.spaces[2] === 21 ) { winner = 2;}
-			else if (this.spaces[3] + this.spaces[4] + this.spaces[5] === 21 ) { winner = 2;}
-			else if (this.spaces[6] + this.spaces[7] + this.spaces[8] === 21 ) { winner = 2;}
-			else if (this.spaces[0] + this.spaces[3] + this.spaces[6] === 21 ) { winner = 2;}
-			else if (this.spaces[1] + this.spaces[4] + this.spaces[7] === 21 ) { winner = 2;}
-			else if (this.spaces[2] + this.spaces[5] + this.spaces[8] === 21 ) { winner = 2;}
-			else if (this.spaces[0] + this.spaces[4] + this.spaces[8] === 21 ) { winner = 2;}
-			else if (this.spaces[2] + this.spaces[4] + this.spaces[6] === 21 ) { winner = 2;}
+			if      (self.spaces[0] + self.spaces[1] + self.spaces[2] === 21 ) { winner = 2;}
+			else if (self.spaces[3] + self.spaces[4] + self.spaces[5] === 21 ) { winner = 2;}
+			else if (self.spaces[6] + self.spaces[7] + self.spaces[8] === 21 ) { winner = 2;}
+			else if (self.spaces[0] + self.spaces[3] + self.spaces[6] === 21 ) { winner = 2;}
+			else if (self.spaces[1] + self.spaces[4] + self.spaces[7] === 21 ) { winner = 2;}
+			else if (self.spaces[2] + self.spaces[5] + self.spaces[8] === 21 ) { winner = 2;}
+			else if (self.spaces[0] + self.spaces[4] + self.spaces[8] === 21 ) { winner = 2;}
+			else if (self.spaces[2] + self.spaces[4] + self.spaces[6] === 21 ) { winner = 2;}
 
 			// Player 1 has won
 			if (winner === 1) {
-				this.player1++;
-				console.log("count of player 1 wins: " + this.player1);
-				this.win = true;
+				self.player1++;
+				console.log("count of player 1 wins: " + self.player1);
+				self.win = true;
 				// Do you want to play again??
 				playAgain = confirm("Player 1 wins!!! \n\nWant to play again?");
-					if (playAgain === true) { this.boardReset(); } else {}
+					if (playAgain === true) { self.boardReset(); } else {}
 			// Player 2 has won
 			} else if (winner === 2) {
-				this.player2++;
-				this.win = true;
+				self.player2++;
+				self.win = true;
 				// Do you want to play again??
 				playAgain = confirm("Player 2 wins!!! \n\nWant to play again?");
-					if (playAgain === true) { this.boardReset(); } else {}
+					if (playAgain === true) { self.boardReset(); } else {}
 			// Cats game reset function
-			} else if (this.turnCounter >=9 ) {
+			} else if (self.turnCounter >=9 ) {
 				alert("Cats Game!  Equally matched you are... Play again!"); 
-				{ this.boardReset(); } 
+				{ self.boardReset(); } 
 			} else {
-				this.win = false;
+				self.win = false;
 			}
 		} // Closes the winCheck block
 
 		function boardReset() {
 			console.log("Inside Board Reset");
-			this.spaces = [0,0,0,0,0,0,0,0,0];
-			this.turnCounter = 0;
-			this.win = false;
+			self.spaces = [0,0,0,0,0,0,0,0,0];
+			self.turnCounter = 0;
+			self.win = false;
 
 			// Sets a random first player
 			var randomNumber = (Math.ceil(Math.random() * 2));
-			if (randomNumber === 2) { this.playerTurn = true; }
-				else { this.playerTurn = false; }
+			if (randomNumber === 2) { self.playerTurn = true; }
+				else { self.playerTurn = false; }
 
-			return this.playerTurn;
+			return self.playerTurn;
 
-			this.submitTurn();
+			self.submitTurn();
 		}
 
-		for (var i = 0; i < this.spaces.length; i++) { // prevents new boxes from being added
-			this.spaces[i] = 0;
+		for (var i = 0; i < self.spaces.length; i++) { // prevents new boxes from being added
+			self.spaces[i] = 0;
 		}
  	}
 
