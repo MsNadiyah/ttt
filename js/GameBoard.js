@@ -2,23 +2,24 @@ angular
 	.module("tttApp")
 	.factory("GameBoard", GameBoardFunc);
 
-function GameBoardFunc() {
+GameBoardFunc.$inject = ["$firebase"];
 
-	//var SPACE_STATES = ["unselected", "player1", "player2"];
+function GameBoardFunc($firebase) {
+
+	var tttFirebase = new Firebase("https://dex-lab-tictactoe.firebaseio.com/GameBoard");
+	var tttFirebase = $firebase(tttFirebase).$asObject();
 
 	var GameBoard = function( numSpaces ) {
 		this.numSpaces = numSpaces;
-		//this.spaces = new Array( numSpaces );
+			//this.spaces = new Array( numSpaces );
 		this.spaces = [0,0,0,0,0,0,0,0,0];
 
-		this.turnCounter = 0; // Initialized to 0
+		this.turnCounter = 0; 
 		this.win = false;
 		this.playerTurn = true;
 		this.player1 = 0;
 		this.player2 = 0;
 
-		//this.toggleSpace = toggleSpace;
-		//this.getSpaceState = getSpaceState;
 		this.submitTurn = submitTurn;
 		this.winCheck = winCheck;
 		this.boardReset = boardReset;
