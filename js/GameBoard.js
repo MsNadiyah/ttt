@@ -6,25 +6,34 @@ GameBoardFunc.$inject = ["$firebase"];
 
 function GameBoardFunc($firebase) {
 
-	var tttFirebase = new Firebase("https://dex-lab-tictactoe.firebaseio.com/GameBoard");
-	var tttFirebase = $firebase(tttFirebase).$asObject();
+	var self = this;
 
-	var GameBoard = function( numSpaces ) {
-		var self = this;
+	// Creates the FB object "tttGameManager"
+	var ref = new Firebase("https://dex-lab-tictactoe.firebaseio.com/tttGameManager");
+		self.gameManager = $firebase(ref).$asObject(); 
 
-		self.numSpaces = numSpaces;
-			//self.spaces = new Array( numSpaces );
-		self.spaces = [0,0,0,0,0,0,0,0,0];
+	self.gameManager.spaces = [0,0,0,0,0,0,0,0,0];
 
-		self.turnCounter = 0; 
-		self.win = false;
-		self.playerTurn = true;
-		self.player1 = 0;
-		self.player2 = 0;
+	self.gameManager.turnCounter = 0; 
+	self.gameManager.win = false;
+	self.gameManager.playerTurn = true;
+	self.gameManager.player1 = 0;
+	self.gameManager.player2 = 0;
+	self.gameManager.$save(); 
 
-		self.submitTurn = submitTurn;
-		self.winCheck = winCheck;
-		self.boardReset = boardReset;
+	self.submitTurn = submitTurn;
+	self.winCheck = winCheck;
+	self.boardReset = boardReset;
+
+	function makeGameBoard () {
+		for (var i = 0; i < 9; i++) { // loop that creates the board
+			self.spaces[i] = 0;
+		}
+	}
+
+	// Creates the tttFirebase object on Firebase
+	var ref1 = new Firebase("https://dex-lab-tictactoe.firebaseio.com/tttGameBoard");
+	self.tttGameBoard = $firebase(ref1).$asArray();
 
 		// The toggleSpace function will need to change in order to reflect player selections
 		function submitTurn(i) {
@@ -112,11 +121,6 @@ function GameBoardFunc($firebase) {
 			self.submitTurn();
 		}
 
-		for (var i = 0; i < self.spaces.length; i++) { // prevents new boxes from being added
-			self.spaces[i] = 0;
-		}
- 	}
-
- 	return GameBoard;
-
-} // closes the Game Board function
+		return makeGameBoard();
+ 	
+ 	}  // closes the Game Board Factory function
